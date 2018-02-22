@@ -1,0 +1,12 @@
+source leaprc.protein.ff14SB #Source leaprc file for ff14SB protein force field
+#source leaprc.gaff Only if ligand present. Source leaprc file for gaff
+source leaprc.water.tip3p #Source leaprc file for TIP3P water model
+#loadamberprep 0E8_clean_H.prepi Only if ligand present. Load the prepi file for the ligand
+#loadamberparams 0E8.frcmod Only if ligand present. Load the additional frcmod file for ligand
+mol = loadpdb 4EY4B-2 wH.pdb #Load PDB file 
+solvatebox mol TIP3PBOX 12.0 #Solvate the complex with a cubic water box
+charge mol
+addions mol K+ 0 #Add ions to neutralize the system
+savepdb mol 4EY4B2W.pdb
+saveamberparm mol 4EY4B2W.prmtop 4EY4B2W.inpcrd #Save AMBER topology and coordinate files
+quit #Quit tleap program
